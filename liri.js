@@ -4,27 +4,31 @@ var keys = require("./keys.js");
 const spotify = new Spotify(keys.spotify);
 const axios = require('axios');
 const moment = require('moment');
+var fs = require("fs");
 
 
 var command = process.argv[2];
+readCommand();
 
-switch (command) {
-    case "concert-this":
-        getConcert();
-        break;
-    case "spotify-this-song":
-        getSong();
-        break;
-    case "movie-this":
-        getMovie();
-        break;
-    case "do-what-it-says":
+function readCommand(){
+    switch (command) {
+        case "concert-this":
+            getConcert();
+            break;
+        case "spotify-this-song":
+            getSong();
+            break;
+        case "movie-this":
+            getMovie();
+            break;
+        case "do-what-it-says":
+            doThis();
+            break;
 
-        break;
-
-    default:
-        console.log("Please type one of the following commands. concert-this spotify-this-song movie-this do-what-it-says")
-        break;
+        default:
+            console.log("Please type one of the following commands. concert-this spotify-this-song movie-this do-what-it-says")
+            break;
+    }
 }
 
 function getConcert(){
@@ -104,4 +108,22 @@ function getMovie(){
             console.log(error);
         }
     )
+}
+
+function doThis(){
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        var dataArr = data.split(",");
+        command = dataArr[0];
+        //<Jedi mind tricks>
+        process.argv = process.argv.slice(0, 2);
+        var tempArray = dataArr[1].split(" ");
+        tempArray.forEach(element => {
+            process.argv.push(element);
+        });
+        //</Jedi mind tricks>
+        readCommand();
+    });
 }
