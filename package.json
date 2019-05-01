@@ -1,0 +1,25 @@
+{
+  "name": "LiriBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesseBoe/LiriBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesseBoe/LiriBot/issues"
+  },
+  "homepage": "https://github.com/JesseBoe/LiriBot#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "moment": "^2.24.0"
+  }
+}
